@@ -10,7 +10,7 @@ export const VideoStream = () => {
   useEffect(() => {
     const connect = () => {
       // שנה כאן ל-IP של הראסברי שלך
-      const socketUrl = 'https://ostensive-uguisu-7724.dataplicity.io'; 
+      const socketUrl = 'https://c7d5ef542f8ec441.p051.r3proxy.com'; 
       
       setStatus("Connecting...");
       ws.current = new WebSocket(socketUrl);

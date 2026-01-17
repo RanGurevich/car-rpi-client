@@ -10,7 +10,7 @@ export const VideoStream = () => {
   useEffect(() => {
     const connect = () => {
       // שנה כאן ל-IP של הראסברי שלך
-      const socketUrl = '046e848aac8533ab.p050.r3proxy.com'; 
+      const socketUrl = 'https://adrimwwarvrk.connect.remote.it; 
       
       setStatus("Connecting...");
       ws.current = new WebSocket(socketUrl);

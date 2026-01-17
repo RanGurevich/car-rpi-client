@@ -10,7 +10,7 @@ export const VideoStream = () => {
   useEffect(() => {
     const connect = () => {
       // שנה כאן ל-IP של הראסברי שלך
-      const socketUrl = 'https://51c0d5414f17a55d.p050.r3proxy.com'; 
+      const socketUrl = 'https://d1de82f503913e9a.p051.r3proxy.com'; 
       
       setStatus("Connecting...");
       ws.current = new WebSocket(socketUrl);

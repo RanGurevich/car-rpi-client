@@ -4,21 +4,22 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { TUNNEL_URL } from '../utils';
 
 export const JoystickControl = () => {
   const [activeButton, setActiveButton] = useState(null);
   const ws = useRef(null);
   const [wsStatus, setWsStatus] = useState("Disconnected");
+  const currentCommandRef = useRef(null);
 
   useEffect(() => {
     const connect = () => {
       // כתובת WebSocket לשליטה - משתמש באותו URL כמו VideoStream
       // הערה: השרת יצטרך לתמוך בפקודות שליטה דרך WebSocket
-      const socketUrl = 'https://a2c01923ec2fe854.p50.rt3.io';
       
       setWsStatus("Connecting...");
       try {
-        ws.current = new WebSocket(socketUrl);
+        ws.current = new WebSocket(TUNNEL_URL);
 
         ws.current.onopen = () => {
           console.log("Control WebSocket Connected");
@@ -59,8 +60,22 @@ export const JoystickControl = () => {
     }
   };
 
+  // שליחת פקודה חוזרת כל שנייה כשהכפתור לחוץ
+  useEffect(() => {
+    if (activeButton && currentCommandRef.current) {
+      const interval = setInterval(() => {
+        sendDriveCommand(currentCommandRef.current);
+      }, 1000); // כל שנייה
+
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [activeButton]);
+
   const onButtonParse = (direction, command) => {
     setActiveButton(direction);
+    currentCommandRef.current = command;
     sendDriveCommand(command);
   };
 
@@ -68,6 +83,7 @@ export const JoystickControl = () => {
     if (activeButton) {
       sendDriveCommand('q'); // פקודת עצירה
       setActiveButton(null);
+      currentCommandRef.current = null;
     }
   };
 

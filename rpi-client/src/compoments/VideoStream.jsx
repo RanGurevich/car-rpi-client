@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { TUNNEL_URL } from '../utils';
 
 export const VideoStream = () => {
   const [imageSrc, setImageSrc] = useState(null);
@@ -10,10 +11,9 @@ export const VideoStream = () => {
   useEffect(() => {
     const connect = () => {
       // שנה כאן ל-IP של הראסברי שלך
-      const socketUrl = 'https://a2c01923ec2fe854.p50.rt3.io'; 
       
       setStatus("Connecting...");
-      ws.current = new WebSocket(socketUrl);
+      ws.current = new WebSocket(TUNNEL_URL);
 
       ws.current.onopen = () => {
         console.log("Connected to WebSocket");

@@ -50,7 +50,7 @@ export const JoystickControl = () => {
     };
   }, []);
 
-  const sendCommand = (command) => {
+  const sendDriveCommand = (command) => {
     if (ws.current && ws.current.readyState === WebSocket.OPEN) {
       ws.current.send(command);
       console.log("Sent command:", command);
@@ -59,14 +59,14 @@ export const JoystickControl = () => {
     }
   };
 
-  const handleStart = (direction, command) => {
+  const onButtonParse = (direction, command) => {
     setActiveButton(direction);
-    sendCommand(command);
+    sendDriveCommand(command);
   };
 
   const handleEnd = () => {
     if (activeButton) {
-      sendCommand('q'); // פקודת עצירה
+      sendDriveCommand('q'); // פקודת עצירה
       setActiveButton(null);
     }
   };
@@ -136,12 +136,12 @@ export const JoystickControl = () => {
         <Box sx={{ gridColumn: '2', gridRow: '1' }}>
           <IconButton
             sx={activeButton === 'up' ? activeButtonStyle : buttonStyle}
-            onMouseDown={() => handleStart('up', 'w')}
+            onMouseDown={() => onButtonParse('up', 'forward')}
             onMouseUp={handleEnd}
             onMouseLeave={handleEnd}
             onTouchStart={(e) => {
               preventDefault(e);
-              handleStart('up', 'w');
+              onButtonParse('up', 'forward');
             }}
             onTouchEnd={(e) => {
               preventDefault(e);
@@ -161,12 +161,12 @@ export const JoystickControl = () => {
         <Box sx={{ gridColumn: '1', gridRow: '2' }}>
           <IconButton
             sx={activeButton === 'left' ? activeButtonStyle : buttonStyle}
-            onMouseDown={() => handleStart('left', 'a')}
+            onMouseDown={() => onButtonParse('left', 'left')}
             onMouseUp={handleEnd}
             onMouseLeave={handleEnd}
             onTouchStart={(e) => {
               preventDefault(e);
-              handleStart('left', 'a');
+              onButtonParse('left', 'left');
             }}
             onTouchEnd={(e) => {
               preventDefault(e);
@@ -188,12 +188,12 @@ export const JoystickControl = () => {
         <Box sx={{ gridColumn: '3', gridRow: '2' }}>
           <IconButton
             sx={activeButton === 'right' ? activeButtonStyle : buttonStyle}
-            onMouseDown={() => handleStart('right', 'd')}
+            onMouseDown={() => onButtonParse('right', 'right')}
             onMouseUp={handleEnd}
             onMouseLeave={handleEnd}
             onTouchStart={(e) => {
               preventDefault(e);
-              handleStart('right', 'd');
+              onButtonParse('right', 'right');
             }}
             onTouchEnd={(e) => {
               preventDefault(e);
@@ -213,12 +213,12 @@ export const JoystickControl = () => {
         <Box sx={{ gridColumn: '2', gridRow: '3' }}>
           <IconButton
             sx={activeButton === 'down' ? activeButtonStyle : buttonStyle}
-            onMouseDown={() => handleStart('down', 's')}
+            onMouseDown={() => onButtonParse('down', 'backward')}
             onMouseUp={handleEnd}
             onMouseLeave={handleEnd}
             onTouchStart={(e) => {
               preventDefault(e);
-              handleStart('down', 's');
+              onButtonParse('down', 'backward');
             }}
             onTouchEnd={(e) => {
               preventDefault(e);

@@ -50,13 +50,6 @@ export const VideoStream = () => {
 
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h3>Ran Camera</h3>
-      <p style={{ 
-        color: status === 'Connected' ? 'green' : 'red', 
-        fontWeight: 'bold' 
-      }}>
-        Status: {status}
-      </p>
       
       {imageSrc ? (
         <img 

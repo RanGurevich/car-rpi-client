@@ -118,7 +118,6 @@ export const JoystickControl = () => {
           marginBottom: 1,
         }}
       >
-        Control: {wsStatus}
       </Box>
 
       <Box

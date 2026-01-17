@@ -14,7 +14,7 @@ export const JoystickControl = () => {
     const connect = () => {
       // כתובת WebSocket לשליטה - משתמש באותו URL כמו VideoStream
       // הערה: השרת יצטרך לתמוך בפקודות שליטה דרך WebSocket
-      const socketUrl = 'wss://ostensive-uguisu-7724.dataplicity.io';
+      const socketUrl = 'https://a2c01923ec2fe854.p50.rt3.io';
       
       setWsStatus("Connecting...");
       try {

@@ -4,14 +4,15 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { VideoStream } from './compoments/VideoStream'
 import { JoystickControl } from './compoments/JoystickControl'
+import { SearchItems } from './compoments/SearchItems'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
       <VideoStream/>
       <JoystickControl/>
+      <SearchItems/>
     </>
   )
 }

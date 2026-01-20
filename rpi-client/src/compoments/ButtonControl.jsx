@@ -4,6 +4,10 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import NorthEastIcon from '@mui/icons-material/NorthEast';
+import NorthWestIcon from '@mui/icons-material/NorthWest';
+import SouthEastIcon from '@mui/icons-material/SouthEast';
+import SouthWestIcon from '@mui/icons-material/SouthWest';
 import { TUNNEL_URL } from '../utils';
 
 export const ButtonControl = () => {
@@ -147,7 +151,31 @@ export const ButtonControl = () => {
           aspectRatio: '1',
         }}
       >
-        {/* שורה ראשונה - כפתור למעלה */}
+        {/* שורה ראשונה - כפתורים אלכסוניים למעלה וכפתור למעלה */}
+        <Box sx={{ gridColumn: '1', gridRow: '1' }}>
+          <IconButton
+            sx={activeButton === 'upLeft' ? activeButtonStyle : buttonStyle}
+            onMouseDown={() => onButtonParse('upLeft', 'ForwardLeft')}
+            onMouseUp={handleEnd}
+            onMouseLeave={handleEnd}
+            onTouchStart={(e) => {
+              preventDefault(e);
+              onButtonParse('upLeft', 'ForwardLeft');
+            }}
+            onTouchEnd={(e) => {
+              preventDefault(e);
+              handleEnd();
+            }}
+            onTouchCancel={(e) => {
+              preventDefault(e);
+              handleEnd();
+            }}
+            disableRipple={false}
+          >
+            <NorthWestIcon sx={{ fontSize: 'inherit' }} />
+          </IconButton>
+        </Box>
+
         <Box sx={{ gridColumn: '2', gridRow: '1' }}>
           <IconButton
             sx={activeButton === 'up' ? activeButtonStyle : buttonStyle}
@@ -169,6 +197,30 @@ export const ButtonControl = () => {
             disableRipple={false}
           >
             <ArrowUpwardIcon sx={{ fontSize: 'inherit' }} />
+          </IconButton>
+        </Box>
+
+        <Box sx={{ gridColumn: '3', gridRow: '1' }}>
+          <IconButton
+            sx={activeButton === 'upRight' ? activeButtonStyle : buttonStyle}
+            onMouseDown={() => onButtonParse('upRight', 'ForwardRight')}
+            onMouseUp={handleEnd}
+            onMouseLeave={handleEnd}
+            onTouchStart={(e) => {
+              preventDefault(e);
+              onButtonParse('upRight', 'ForwardRight');
+            }}
+            onTouchEnd={(e) => {
+              preventDefault(e);
+              handleEnd();
+            }}
+            onTouchCancel={(e) => {
+              preventDefault(e);
+              handleEnd();
+            }}
+            disableRipple={false}
+          >
+            <NorthEastIcon sx={{ fontSize: 'inherit' }} />
           </IconButton>
         </Box>
 
@@ -224,7 +276,31 @@ export const ButtonControl = () => {
           </IconButton>
         </Box>
 
-        {/* שורה שלישית - כפתור למטה */}
+        {/* שורה שלישית - כפתורים אלכסוניים למטה וכפתור למטה */}
+        <Box sx={{ gridColumn: '1', gridRow: '3' }}>
+          <IconButton
+            sx={activeButton === 'downLeft' ? activeButtonStyle : buttonStyle}
+            onMouseDown={() => onButtonParse('downLeft', 'BackwardLeft')}
+            onMouseUp={handleEnd}
+            onMouseLeave={handleEnd}
+            onTouchStart={(e) => {
+              preventDefault(e);
+              onButtonParse('downLeft', 'BackwardLeft');
+            }}
+            onTouchEnd={(e) => {
+              preventDefault(e);
+              handleEnd();
+            }}
+            onTouchCancel={(e) => {
+              preventDefault(e);
+              handleEnd();
+            }}
+            disableRipple={false}
+          >
+            <SouthWestIcon sx={{ fontSize: 'inherit' }} />
+          </IconButton>
+        </Box>
+
         <Box sx={{ gridColumn: '2', gridRow: '3' }}>
           <IconButton
             sx={activeButton === 'down' ? activeButtonStyle : buttonStyle}
@@ -246,6 +322,30 @@ export const ButtonControl = () => {
             disableRipple={false}
           >
             <ArrowDownwardIcon sx={{ fontSize: 'inherit' }} />
+          </IconButton>
+        </Box>
+
+        <Box sx={{ gridColumn: '3', gridRow: '3' }}>
+          <IconButton
+            sx={activeButton === 'downRight' ? activeButtonStyle : buttonStyle}
+            onMouseDown={() => onButtonParse('downRight', 'BackwardRight')}
+            onMouseUp={handleEnd}
+            onMouseLeave={handleEnd}
+            onTouchStart={(e) => {
+              preventDefault(e);
+              onButtonParse('downRight', 'BackwardRight');
+            }}
+            onTouchEnd={(e) => {
+              preventDefault(e);
+              handleEnd();
+            }}
+            onTouchCancel={(e) => {
+              preventDefault(e);
+              handleEnd();
+            }}
+            disableRipple={false}
+          >
+            <SouthEastIcon sx={{ fontSize: 'inherit' }} />
           </IconButton>
         </Box>
       </Box>

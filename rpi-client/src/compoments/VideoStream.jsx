@@ -4,14 +4,10 @@ import { TUNNEL_URL } from '../utils';
 export const VideoStream = () => {
   const [imageSrc, setImageSrc] = useState(null);
   const [status, setStatus] = useState("Disconnected");
-  
-  // שומרים את החיבור ב-Ref כדי לנהל אותו בין רינדורים
   const ws = useRef(null);
 
   useEffect(() => {
     const connect = () => {
-      // שנה כאן ל-IP של הראסברי שלך
-      
       setStatus("Connecting...");
       ws.current = new WebSocket(TUNNEL_URL);
 
@@ -21,14 +17,12 @@ export const VideoStream = () => {
       };
 
       ws.current.onmessage = (event) => {
-        // השרת שולח רק את ה-Base64, אנחנו מוסיפים את ה-Header
         setImageSrc(`data:image/jpeg;base64,${event.data}`);
       };
 
       ws.current.onclose = () => {
         console.log("Disconnected. Reconnecting...");
         setStatus("Disconnected");
-        // נסה להתחבר מחדש אחרי שנייה
         setTimeout(connect, 1000);
       };
 
@@ -40,7 +34,6 @@ export const VideoStream = () => {
 
     connect();
 
-    // ניקוי ביציאה מהקומפוננטה
     return () => {
       if (ws.current) {
         ws.current.close();

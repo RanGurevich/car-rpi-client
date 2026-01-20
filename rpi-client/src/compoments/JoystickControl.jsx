@@ -66,6 +66,12 @@ export const JoystickControl = () => {
     const dist = Math.sqrt(x * x + y * y);
     if (dist < 15) {
       stopRepeatInterval();
+      // שולח stop אם המשתמש לא זז מספיק
+      if (ws.current?.readyState === WebSocket.OPEN && lastSentCmd.current !== 'stop') {
+        ws.current.send('stop');
+        console.log("Sent: stop");
+        lastSentCmd.current = 'stop';
+      }
       return;
     }
 
@@ -89,7 +95,11 @@ export const JoystickControl = () => {
     setIsDragging(false);
     setKnobPos({ x: 0, y: 0 });
     stopRepeatInterval();
-    sendDriveCommand('stop', true); 
+    // שולח stop מיד כאשר המשתמש משחרר את הלחיצה
+    if (ws.current?.readyState === WebSocket.OPEN) {
+      ws.current.send('stop');
+      console.log("Sent: stop");
+    }
     lastSentCmd.current = null;
   };
 

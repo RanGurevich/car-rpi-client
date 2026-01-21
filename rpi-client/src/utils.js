@@ -1,1 +1,1 @@
-export const TUNNEL_URL = 'https://3cf6bf0bcfd91845.p052.r3proxy.com';
+export const TUNNEL_URL = 'https://c9e2fdec0afd21fe.p052.r3proxy.com';
